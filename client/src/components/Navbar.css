@@ -1,0 +1,201 @@
+/* =============================
+   RESET & BASE STYLES
+============================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  padding-top: 80px;
+}
+
+/* ✅ FIXED: Prevent scroll WITHOUT breaking Toast */
+body.menu-open {
+  overflow: hidden !important;
+}
+
+/* =============================
+   NAVBAR - ALWAYS VISIBLE
+============================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 9999;
+
+  background: rgba(10, 15, 30, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* =============================
+   NAV CONTAINER
+============================= */
+.nav-container {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* =============================
+   LOGO
+============================= */
+.logo-brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 10001;
+}
+
+.logo-brand img,
+.logoimage {
+  height: 46px;
+  object-fit: contain;
+}
+
+/* =============================
+   MOBILE BUTTON
+============================= */
+.mobile-nav-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  font-size: 1.8rem;
+  z-index: 10001;
+}
+
+/* =============================
+   DESKTOP NAV
+============================= */
+.navComponents {
+  display: flex;
+  align-items: center;
+}
+
+.navComponents ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.navComponents a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  position: relative;
+  transition: 0.3s;
+}
+
+.navComponents a:hover,
+.navComponents a.active {
+  color: #646cff;
+}
+
+/* =============================
+   MOBILE NAV
+============================= */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px;
+  }
+
+  .navbar {
+    height: 70px;
+  }
+
+  .mobile-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navComponents {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(
+      135deg,
+      rgba(10, 15, 30, 0.98),
+      rgba(20, 25, 45, 0.98)
+    );
+
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .navComponents.active {
+    transform: translateX(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .navComponents ul {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .navComponents a {
+    font-size: 1.4rem;
+  }
+}
+
+/* =============================
+   🔥 TOASTIFY SAFETY
+============================= */
+.Toastify__toast-container {
+  z-index: 100000 !important;
+}
+
+/* =============================
+   ACCESSIBILITY
+============================= */
+.navComponents a:focus-visible,
+.mobile-nav-btn:focus-visible {
+  outline: 3px solid #646cff;
+  outline-offset: 4px;
+}

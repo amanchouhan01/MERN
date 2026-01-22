@@ -1,0 +1,45 @@
+/* ===============================
+   GLOBAL BACKGROUND (UNIVERSAL)
+================================ */
+
+/* Ensure full-height layout */
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+/* Background image + base behavior */
+body {
+  min-height: 100vh;
+
+  background-image: url("/daniil-silantev-VqAd3Lr3Pfc-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   GLOBAL OVERLAY (KEY PART)
+================================ */
+/* This gives consistent contrast across ALL pages */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  /* Balanced overlay: dark left → lighter right */
+  background: linear-gradient(
+    to right,
+    rgba(5, 10, 20, 0.75),
+    rgba(5, 10, 20, 0.55),
+    rgba(5, 10, 20, 0.35)
+  );
+
+  z-index: -1; /* stays behind everything */
+  pointer-events: none;
+}

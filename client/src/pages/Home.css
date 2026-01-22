@@ -1,0 +1,168 @@
+/* ===============================
+   BASE / RESET
+================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
+.homeSection-hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 0;
+}
+
+/* Subtle overlay for readability (VERY IMPORTANT) */
+.homeSection-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(5, 10, 20, 0.75),
+    rgba(5, 10, 20, 0.45),
+    rgba(5, 10, 20, 0.2)
+  );
+  z-index: 0;
+}
+
+/* ===============================
+   GRID CONTAINER
+================================ */
+.homeContainer-grid {
+  position: relative;
+  z-index: 1;
+
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* ===============================
+   CONTENT
+================================ */
+.homeHero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 640px;
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================ */
+.homeHero-content h1 {
+  line-height: 1.05;
+  margin-bottom: 1.4rem;
+  color: #ffffff;
+}
+
+/* "Hi, I'm" */
+.homeIntro {
+  font-size: clamp(1.8rem, 2.5vw, 2.1rem);
+  font-weight: 600;
+  color: #a1a1aa;
+  margin-bottom: 0.6rem;
+}
+
+/* Name highlight */
+.homeHighlight {
+  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+
+  background: linear-gradient(90deg, #00d9ff, #7c7cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtitle */
+.homeSubtitle {
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  font-weight: 500;
+  color: #d6b48c;
+  margin-top: 1rem;
+}
+
+/* Description */
+.homeHero-content p {
+  margin-top: 1.8rem;
+  font-size: clamp(1.4rem, 1.6vw, 1.8rem);
+  line-height: 1.75;
+  color: #e5e7eb;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.homeButtun {
+  display: flex;
+  gap: 1.6rem;
+  margin-top: 3rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 1.1rem 2.6rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: linear-gradient(90deg, #00d9ff, #7c7cff);
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: transform 0.2s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ===============================
+   TABLET (≥ 768px)
+================================ */
+@media (min-width: 768px) {
+  .homeHero-content {
+    max-width: 720px;
+  }
+}
+
+/* ===============================
+   DESKTOP (≥ 1024px)
+================================ */
+@media (min-width: 1024px) {
+  .homeContainer-grid {
+    grid-template-columns: 1.2fr 0.8fr;
+    text-align: left;
+  }
+
+  .homeHero-content {
+    align-items: flex-start;
+  }
+
+  .homeButtun {
+    justify-content: flex-start;
+  }
+}
