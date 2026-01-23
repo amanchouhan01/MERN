@@ -47,7 +47,7 @@ app.use(express.static(path.join(_dirname, "/client/dist")));
 
 // 3. Handle React routing (The "Wildcard" Route)
 // This ensures that refreshing on pages like /admin/users works
-app.get("*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
 });
 
