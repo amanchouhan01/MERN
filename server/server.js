@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const path = require("path"); // <--- IMPORT PATH HERE
 
 // handling CORS (Netlify + local)
 app.use(
@@ -15,8 +16,7 @@ app.use(
   })
 );
 
-
-//Router import
+// Router import
 const authRouter = require("./router/auth-router");
 const contactRouter = require("./router/contact-router");
 const serviceRoute = require("./router/service-router"); 
@@ -26,44 +26,34 @@ const errorMiddleware = require("./middlewares/error-middleware");
 
 app.use(express.json());
 
-/* app.use(express.json()); --> This line of code adds express
- middleware that parses incoming request bodies with  json payloads.
-  It is important to place this before any routes that need to 
-  handle json data in the request body. This middleware is 
-  responsibel for parsing json data from requests, and it should be 
-  applied at the beginning of your middleware stack to ensure it is
-  available for all subsequent route handlers.
-*/
-
-//Mount the Router: To use the router in your main Express app, you 
-// can "mount" it at a specific URL prefix
-
+// Mount the Router
 app.use("/api/auth", authRouter);
 app.use("/api/form", contactRouter);
 app.use("/api/data", serviceRoute);
-
-// let's define admin route
-app.use("/api/admin",adminRoute); 
+app.use("/api/admin", adminRoute); 
 
 app.use(errorMiddleware);
 
-// Router hamesha pehle likha jata hai,
-// taaki request sabse pehle router se match ho,
-// agar router match na kare tab hi server.js ke routes chale
-// Pehle Router → match hua to wahi run → nahi hua to server.js
-// Express top-to-bottom check karta hai,
-// isliye router upar = router ko priority
+// =======================================================
+// ↓↓↓↓ ADD THIS SECTION HERE (AFTER ROUTES & ERROR MIDDLEWARE) ↓↓↓↓
+// =======================================================
 
+// 1. Get current directory
+const _dirname = path.resolve();
 
-/*
-app.get("/", (req, res) => {
-  res.status(200).send("Hello World this is aman chouhan");
+// 2. Serve frontend files
+// Note: If your build folder is named 'build' instead of 'dist', change it here.
+app.use(express.static(path.join(_dirname, "/client/dist")));
+
+// 3. Handle React routing (The "Wildcard" Route)
+// This ensures that refreshing on pages like /admin/users works
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(_dirname, "client", "dist", "index.html"));
 });
 
-app.get("/register", (req, res) => {
-  res.status(200).send("this is the registration page");
-});
-*/
+// =======================================================
+// ↑↑↑↑ END OF NEW SECTION ↑↑↑↑
+// =======================================================
 
 const PORT = 5000;
 
