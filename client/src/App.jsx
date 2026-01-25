@@ -32,9 +32,10 @@ const App = () => {
           <Route path='/logout' element={<Logout />}></Route>
           <Route path='*' element={<Error />}></Route>
           <Route path='/admin' element={<AdminLayout />}>
-            <Route path='users' element={<AdminUsers />}></Route>
-            <Route path='contacts' element={<AdminContacts />}></Route>
-            <Route path='users/:id/edit' element={<AdminUpdate />}></Route>
+              <Route index element={<Navigate to="/admin/users" replace />} />
+              <Route path='users' element={<AdminUsers />}/>
+              <Route path='contacts' element={<AdminContacts />}/>
+              <Route path='users/:id/edit' element={<AdminUpdate />}/>
           </Route>
         </Routes>
         <Footer />
