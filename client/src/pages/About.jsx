@@ -16,7 +16,7 @@ const AboutMe = ({
     "Git",
   ],
   profileImage = "/myphoto.jpeg",
-  cvLink = "/CV.pdf", }
+  cvLink = "/Aman-Chouhan-Resume.pdf", }
 
 
 ) => {
